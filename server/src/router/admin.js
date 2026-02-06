@@ -5,6 +5,7 @@ const { adminSignupValidation, adminLoginValidation } = require("../lib/utils");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { adminMiddleware } = require("../middleware/admin.auth");
+const { User } = require("../model/user");
 
 // Admin Signup Route
 adminRouter.post("/adminsignup", async (req, res) => {
@@ -117,15 +118,16 @@ adminRouter.get("/admindashboard", adminMiddleware, (req, res) => {
 });
 
 
-
 //Show All Users Route
-adminRouter.get("/allproducts", adminMiddleware, (req, res) => {
+adminRouter.get("/allusers", adminMiddleware, async (req, res) => {
   try {
-    const admin = req.body;
-
+    
+        const users = await User.find({}); 
+        console.log(users);
+     
     res.send({
       message: "All Users Successfully Fetch",
-      admin,
+      users,
     });
   } catch (error) {
     console.log("Users Fetch Error ", error.message);
@@ -134,6 +136,7 @@ adminRouter.get("/allproducts", adminMiddleware, (req, res) => {
     });
   }
 });
+
 
 
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { addProduct } from "../api/auth.api";
+
 
 const AddProduct = () => {
   // Form state
@@ -20,13 +22,20 @@ const AddProduct = () => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Log form values
     console.log("Product Submitted:", product);
+      
+    try {
+          const res = await addProduct(product);
+          console.log("Product Add Successfull:", res.data);
+        } catch (err) {
+          console.log("Add Product Error:", err.response?.data || err.message);
+        }
 
-    // Optional: reset form
+    // reset form
     setProduct({
       name: "",
       price: "",

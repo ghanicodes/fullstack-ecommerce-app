@@ -17,7 +17,8 @@ try {
     description,
     category
   });
-
+   console.log(newProduct);
+   
   await newProduct.save();
 
   res.status(201).json({
@@ -36,9 +37,11 @@ try {
 
 
 
+// Get All Products 
 productRouter.get("/allProducts", async (req, res) => {
   try {
     const products = await Product.find({});
+    console.log(products);
 
     res.status(200).json({
       message: "All Products fetched successfully",

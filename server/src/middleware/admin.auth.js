@@ -5,7 +5,7 @@ const adminMiddleware = async (req, res, next) => {
   const { AdminToken } = req.cookies;
 
   if (!AdminToken) {
-    return res.status(401).json({ message: "Please Login First" });
+    return res.status(401).json({ message: "Please First Admin Login" });
   }
 
   const decoded = jwt.verify(AdminToken, process.env.AdminSecret);

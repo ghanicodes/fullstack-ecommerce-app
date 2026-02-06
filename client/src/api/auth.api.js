@@ -22,3 +22,9 @@ export const adminLogin = (data) => {
 export const adminSignup = (data) => {
   return api.post("/admin/adminsignup", data); // backend ka /signup endpoint
 };
+
+
+// Add Product Form 
+export const addProduct = (data) => {
+  return api.post("/product/addproduct", data); // backend ka /addproduct endpoint
+};
